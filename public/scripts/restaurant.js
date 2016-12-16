@@ -142,11 +142,47 @@ var postWaitstaff = function (){
   });//end ajax call
 };//end post data
 
+var postMesa = function (){
+
+     //for test purposes only
+  $.ajax({
+    type: "POST",
+    url: '/postMesa',
+    data: testObject,
+    success: function ( response ){
+      console.log('back from post call:', response);
+    },//end success
+    error: function (){
+      console.log("error with ajax call");
+    } //end error
+  });//end ajax call
+};//end post data
+
+var putMesa = function (){
+
+var testObject= {
+  mesa_number: 42,
+  waitstaff_id: 3,
+  mesa_status: 'served'
+};
+  $.ajax({
+    type: "PUT",
+    url: '/putMesa',
+    data: testObject,
+    success: function ( response ){
+      console.log('back from put call:', response);
+    },//end success
+    error: function (){
+      console.log("error with ajax call");
+    } //end error
+  });//end ajax call
+};//end post data
+
 
 
 
 $(function () {
    console.log('document is ready');
-   postWaitstaff();
+   putMesa();
  });
 console.log('js loaded');

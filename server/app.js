@@ -74,10 +74,44 @@ app.post('/postWaitstaff', urlEncodedParser, function(req, res) {
             console.log('connected to database recieving: '+ req.body);
             client.query('INSERT INTO waitstaff(first_name, last_name, active) values($1, $2, $3)', [req.body.first_name, req.body.last_name, req.body.active]);
             done();
-            res.send('meow');
+            res.send('success post waitstaff');
 
         } // end else
     }); // end of pg connect
-}); // end of get getMesa
+}); // end of get post waitstaff
+
+app.post('/postMesa', urlEncodedParser, function(req, res) {
+    console.log('adding mesa: req.body:', req.body);
+    //connect to database
+    pg.connect(connectionString, function(err, client, done) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log('connected to database recieving: '+ req.body);
+            client.query('INSERT INTO mesa (mesa_number, capacity, waitstaff_id, mesa_status) values($1, $2, $3, $4)', [req.body.mesa_number, req.body.capacity, req.body.waitstaff_id, req.body.mesa_status]);
+            done();
+            res.send('successful post mesa');
+
+        } // end else
+    }); // end of pg connect
+}); // end of get post Mesa
+
+app.put('/putMesa', urlEncodedParser, function(req, res) {
+    console.log('Updating: ', req.body);
+    //connect to database
+    pg.connect(connectionString, function(err, client, done) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log("mesa status: "+ req.body.mesa_status);
+            console.log('connected to database recieving: '+ req.body);
+            //client.query('UPDATE mesa SET waitstaff_id =' + req.body.waitstaff_id + 'WHERE mesa_number =' + req.body.mesa_number);
+            client.query('UPDATE mesa SET mesa_status =' + req.body.mesa_status + 'WHERE mesa_number =' + req.body.mesa_number);
+            done();
+            res.send('successful post mesa');
+
+        } // end else
+    }); // end of pg connect
+}); // end of get post Mesa
 
 app.use(express.static('public'));
