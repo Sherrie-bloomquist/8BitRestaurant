@@ -104,7 +104,7 @@ app.put('/putMesa', urlEncodedParser, function(req, res) {
             console.log(err);
         } else {
             console.log("mesa status: "+ req.body.mesa_status);
-            console.log('connected to database recieving: '+ req.body);
+            console.log('connected to database updating: '+ req.body);
             //client.query('UPDATE mesa SET waitstaff_id =' + req.body.waitstaff_id + 'WHERE mesa_number =' + req.body.mesa_number);
             client.query('UPDATE mesa SET mesa_status =' + req.body.mesa_status + 'WHERE mesa_number =' + req.body.mesa_number);
             done();
