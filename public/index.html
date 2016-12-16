@@ -17,24 +17,26 @@
       <option value=8>8</option>
       <option value=10>10</option>
     </select>
-    <button onclick="createTable();">Add Table</button>
+    <button id='addMesa'>Add Table</button>
     <h2>Update Table</h2>
     Table Number:<input type="number" id="mesaToUpdate" placeholder='Ex: 01'>
     Table Status:<select id="mesaStatus">
-      <option value=empty>empty</option>
-      <option value=seated>seated</option>
-      <option value=served>served</option>
-      <option value=dirty>dirty</option>
+      <option value="empty">empty</option>
+      <option value="seated">seated</option>
+      <option value="served">served</option>
+      <option value='dirty'>dirty</option>
     </select>
-    <button onclick="createTable();">Add Table</button>
+    <input type="text" id="assignedFirstName" placeholder="emp first name">
+    <input type="text" id="assignedLastName" placeholder="emp last name">
+    <button id=updateMesa>Add Table</button>
     <h2>Create Employee</h2>
     <input type="text" id="employeeFirstNameIn" placeholder="First Name">
     <input type="text" id="employeeLastNameIn"  placeholder="Last Name">
-    <button onclick="createEmployee()">Add Employee</button>
+    <button id="createEmployee">Add Employee</button>
     <h2>Update employee</h2>
     <input type="text" id="employeeToUpdate" placeholder="First Name">
     <input type="text" id="employeeLastNameIn"  placeholder="Last Name">
-    <button onclick="createEmployee()">Add Employee</button>
+    <button id='updateEmployee'>Add Employee</button>
     <h2>Current Employees</h2>
     <div id="employeesOutput"></div>
     <h2>Current Tables</h2>

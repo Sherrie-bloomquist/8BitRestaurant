@@ -35,15 +35,15 @@ function getMesa() {
 
 function postWaitstaff() {
   var newWaitstaff ={
-      first_name: $('#employeeFirstNameIn').val,
-      last_name: $('#employeeLastNameIn').val,
+      first_name: $('#employeeFirstNameIn').val(),
+      last_name: $('#employeeLastNameIn').val(),
       active: true
     };
 
     $.ajax({
         type: "POST",
         url: '/postWaitstaff',
-        data: testObject,
+        data: newWaitstaff,
         success: function(response) {
             console.log('back from post call:', response);
         }, //end success
@@ -55,8 +55,8 @@ function postWaitstaff() {
 
 var postMesa = function() {
   var newTable ={
-    mesa_number: $('#mesaNumberIn').val,
-    capacity:  $('#capacityIn').val
+    mesa_number: $('#mesaNumberIn').val(),
+    capacity:  $('#capacityIn').val()
   };
     $.ajax({
         type: "POST",
@@ -73,10 +73,13 @@ var postMesa = function() {
 
 var putMesa = function() {
     var updateMesa = {
-        mesa_number: 42,
-        waitstaff_id: 3,
-        mesa_status: 'served'
-    };
+        mesa_number: $("#mesaToUpdate").val(),
+        mesa_status: $('#mesaStatus').val(),
+        first_name: $('#assignedFirstName').val(),
+        last_name: $('#assignedLastName').val()
+      };//end object
+      console.log('sending update mesa', updateMesa);
+
     $.ajax({
         type: "PUT",
         url: '/putMesa',
@@ -91,12 +94,22 @@ var putMesa = function() {
 }; //end post data
 
 function enable(){
+  $('#addMesa').on('click', function(){
+    postMesa();
+  });//end addMesa on click
+  $('#updateMesa').on('click', function(){
+    putMesa();
+  });//end updateMesa on click
+  $('#createEmployee').on('click', function(){
+    postWaitstaff();
+  }); //end createEmployee on click
 
-}
+}//end enable function
 
 
 $(function() {
     console.log('document is ready');
     getWaitstaff();
+    enable();
 });
 console.log('js loaded');

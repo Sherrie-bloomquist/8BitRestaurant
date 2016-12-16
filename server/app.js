@@ -104,11 +104,13 @@ app.put('/putMesa', urlEncodedParser, function(req, res) {
             console.log(err);
         } else {
             console.log("mesa status: "+ req.body.mesa_status);
+            console.log('mesa number: '+ req.body.mesa_number);
             console.log('connected to database updating: '+ req.body);
-            //client.query('UPDATE mesa SET waitstaff_id =' + req.body.waitstaff_id + 'WHERE mesa_number =' + req.body.mesa_number);
-            client.query('UPDATE mesa SET mesa_status =' + req.body.mesa_status + 'WHERE mesa_number =' + req.body.mesa_number);
+            // client.query('UPDATE mesa SET waitstaff_id =' + req.body.waitstaff_id + 'WHERE mesa_number =' + req.body.mesa_number);
+            // UPDATE mesa SET mesa_status = 'dirty' WHERE mesa_number = 42;
+            client.query("UPDATE mesa SET mesa_status = '"+ req.body.mesa_status +"' WHERE mesa_number = " + req.body.mesa_number+";");
             done();
-            res.send('successful post mesa');
+            res.send('successful puts mesa');
 
         } // end else
     }); // end of pg connect
